@@ -7,24 +7,27 @@ import org.springframework.stereotype.Service;
 
 import com.pluralsight.model.Customer;
 import com.pluralsight.repository.CustomerRepository;
-import com.pluralsight.repository.HibernateCustomerRepositoryImpl;
 
 @Service("customerService")
 public class CustomerServiceImpl implements CustomerService {
 	
+	
 	private CustomerRepository cust;
 	
-	public CustomerServiceImpl(){}
-	
-	public CustomerServiceImpl(CustomerRepository cust) {
+	@Autowired
+	public CustomerServiceImpl(CustomerRepository customerRepository) {
 		super();
-		System.out.println("Constructorss injection");
-		this.cust = cust;
+		System.out.println("using constructor injection");
+		this.cust=customerRepository;
 	}
 
-	@Autowired
+	public CustomerServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	public void setCust(CustomerRepository cust) {
-		System.out.println("Setter injection");
+		System.out.println("Using setter injection");
 		this.cust = cust;
 	}
 
